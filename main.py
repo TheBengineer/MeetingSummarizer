@@ -35,7 +35,7 @@ def filter_events(events):
 def format_event(event, format_str):
     event_name = event['Subject']
     event_date = event['Start Date']
-    event_date_string = datetime.datetime.strptime(event_date, '%m/%d/%Y').strftime('%A, %B %d')
+    event_date_string = datetime.datetime.strptime(event_date, '%m/%d/%Y').strftime('%A, %B %d %Y')
     return format_str.format(event_name=event_name, event_date_string=event_date_string)
 
 
