@@ -36,6 +36,14 @@ def format_event_description(event_description):
     return event_description
 
 
+def load_template_string():
+    project_dir = os.getcwd()
+    filepath = os.path.join(project_dir, 'template.txt')
+    if os.path.isfile(filepath):
+        with open(filepath, 'r') as template_file:
+            return template_file.read()
+
+
 def process_events(events):
     """
     loops through events and formats descriptions for priting
@@ -46,6 +54,8 @@ def process_events(events):
     return events
 
 
-all_events = load_calendar_csv('calendar.csv')
-events_this_week = filter_events(all_events)
-print(events_this_week)
+if __name__ == "__main__":
+    template_str = load_template_string()
+    all_events = load_calendar_csv('calendar.csv')
+    events_this_week = filter_events(all_events)
+    print(events_this_week)
