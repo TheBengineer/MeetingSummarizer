@@ -1,1 +1,1 @@
-Participated in the {event_name} meeting on {event_date_string}. Participants included representatives from {team}. The purpose of this meeting was to {event_purpose}.
+Participated in the {event_name} meeting on {event_date_string}. Participants included representatives from  The purpose of this meeting was to {event_purpose}

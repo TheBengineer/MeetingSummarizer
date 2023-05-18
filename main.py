@@ -7,7 +7,7 @@ def load_calendar_csv(filename):
     project_dir = os.getcwd()
     filepath = os.path.join(project_dir, filename)
     if os.path.isfile(filepath):
-        with open(filepath, 'r', encoding="windows-1252", errors="ignore") as csvfile:
+        with open(filepath, 'r', encoding="utf-8-sig", errors="ignore") as csvfile:
             reader = csv.DictReader(csvfile)
             return list(reader)
 
@@ -35,10 +35,8 @@ def filter_events(events):
 def format_event(event, format_str):
     event_name = event['Subject']
     event_date = event['Start Date']
-    event_date_str = datetime.datetime.strptime(event_date, '%m/%d/%Y').strftime('%A, %B %d')
-    team = ""
-    event_purpose = ""
-    return format_str.format(event_name=event_name, event_date=event_date_str, team=team, event_purpose=event_purpose)
+    event_date_string = datetime.datetime.strptime(event_date, '%m/%d/%Y').strftime('%A, %B %d')
+    return format_str.format(event_name=event_name, event_date_string=event_date_string)
 
 
 def load_template_string():
