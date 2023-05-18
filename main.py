@@ -32,8 +32,13 @@ def filter_events(events):
     return sorted_events
 
 
-def format_event_description(event_description):
-    return event_description
+def format_event(event, format_str):
+    event_name = event['Subject']
+    event_date = event['Start Date']
+    event_date_str = datetime.datetime.strptime(event_date, '%m/%d/%Y').strftime('%A, %B %d')
+    team = ""
+    event_purpose = ""
+    return format_str.format(event_name=event_name, event_date=event_date_str, team=team, event_purpose=event_purpose)
 
 
 def load_template_string():
@@ -49,13 +54,12 @@ def process_events(events):
     loops through events and formats descriptions for priting
     """
     for event in events:
-        event['Description'] = format_event_description(event['Description'])
-
-    return events
+        event_str_formatted = format_event(event, template_str)
+        print(event_str_formatted)
 
 
 if __name__ == "__main__":
     template_str = load_template_string()
     all_events = load_calendar_csv('calendar.csv')
     events_this_week = filter_events(all_events)
-    print(events_this_week)
+    process_events(events_this_week)
